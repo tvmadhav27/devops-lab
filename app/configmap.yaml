@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: app-config
+
+data:
+  ENVIRONMENT: Production
+  VERSION: v2
+  COMPANY: DevOpsLab

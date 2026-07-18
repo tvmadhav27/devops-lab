@@ -18,8 +18,33 @@ spec:
 
     spec:
       containers:
-      - name: devops-app
-        image: tvmadhav27/devops-app:v1
+        - name: devops-app
+          image: tvmadhav27/devops-app:v2
 
-        ports:
-        - containerPort: 80
+          env:
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: ENVIRONMENT
+
+            - name: VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: VERSION
+
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DB_USERNAME
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DB_PASSWORD
+
+          ports:
+            - containerPort: 80
